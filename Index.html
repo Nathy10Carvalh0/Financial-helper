@@ -3,15 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finex</title>
+    <title>Dashboard Financeiro</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #102026;
+            color: #c7d2d9;
+        }
+
+        .menu {
+            width: 200px;
+            background-color: #1a2e35;
+            height: 100vh;
+            position: fixed;
+            padding: 20px;
+        }
+
+        .menu a {
+            display: block;
+            text-decoration: none;
+            color: #c7d2d9;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            color: #00b894;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .summary div {
+            background-color: #1a2e35;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #2a3b40;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1a2e35;
+        }
+
+        .form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form input, .form button {
+            padding: 10px;
+            border: 1px solid #2a3b40;
+            border-radius: 5px;
+            background-color: #1a2e35;
+            color: #c7d2d9;
+        }
+
+        .form button {
+            background-color: #00b894;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #019a78;
+        }
+    </style>
 </head>
 <body>
-    <h1>Assistente Financeiro</h1>
-    <h3>Qual sua renda mensal?</h3>
-    <input type="number" id="RendaMensal"></input>
-    <h3>Quais seus gastos fixos?</h3>
-    <input type="number" id="GastosFixos">
-    
+    <div class="menu">
+        <h2>Menu</h2>
+        <a href="#">Home</a>
+        <a href="#">Year</a>
+        <a href="#">Investments</a>
+        <a href="#">Monthly</a>
+        <a href="#">Dashboard</a>
+    </div>
 
+    <div class="content">
+        <div class="header">
+            <button>&lt; Back</button>
+            <h1>2025 January</h1>
+            <button>Next &gt;</button>
+        </div>
+
+        <div class="summary">
+            <div id="income">Income<br>R$: 0,00</div>
+            <div id="expenses">Expenses<br>R$: 0,00</div>
+            <div id="closing">Closing<br>R$: 0,00</div>
+        </div>
+
+        <form class="form" id="form">
+            <input type="date" id="date" required>
+            <input type="text" id="description" placeholder="Description" required>
+            <input type="number" id="value" placeholder="Value" required>
+            <input type="text" id="where" placeholder="Where" required>
+            <input type="text" id="type" placeholder="Type" required>
+            <button type="submit">Include</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Value</th>
+                    <th>Where</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr>
+                    <td>27/01</td>
+                    <td>Salary</td>
+                    <td>1815.00</td>
+                    <td>C6 Debit</td>
+                    <td>Income</td>
+                </tr>
+                <tr>
+                    <td>27/01</td>
+                    <td>Commission</td>
+                    <td>446.98</td>
+                    <td>C6 Debit</td>
+                    <td>Income</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function updateSummary() {
+            const rows = document.querySelectorAll('#table-body tr');
+            let totalIncome = 0;
+            let totalExpenses = 0;
+
+            rows.forEach(row => {
+                const value = parseFloat(row.children[2].textContent);
+                const type = row.children[4].textContent.toLowerCase();
+
+                if (type === 'income') {
+                    totalIncome += value;
+                } else if (type === 'expenses') {
+                    totalExpenses += value;
+                }
+            });
+
+            document.getElementById('income').innerHTML = `Income<br>R$: ${totalIncome.toFixed(2)}`;
+            document.getElementById('expenses').innerHTML = `Expenses<br>R$: ${totalExpenses.toFixed(2)}`;
+            document.getElementById('closing').innerHTML = `Closing<br>R$: ${(totalIncome - totalExpenses).toFixed(2)}`;
+        }
+
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const description = document.getElementById('description').value;
+            const value = parseFloat(document.getElementById('value').value).toFixed(2);
+            const where = document.getElementById('where').value;
+            const type = document.getElementById('type').value;
+
+            const tableBody = document.getElementById('table-body');
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${date}</td>
+                <td>${description}</td>
+                <td>${value}</td>
+                <td>${where}</td>
+                <td>${type}</td>
+            `;
+
+            tableBody.appendChild(newRow);
+
+            updateSummary();
+
+            // Clear form
+            document.getElementById('form').reset();
+        });
+
+        // Initial summary update
+        updateSummary();
+    </script>
 </body>
 </html>
