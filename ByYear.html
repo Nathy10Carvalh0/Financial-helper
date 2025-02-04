@@ -79,6 +79,65 @@
             margin: 10px 0;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const data = {
+                January: { income: 2261.98, expenses: 0.0, savings: 0.0 },
+                February: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                March: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                April: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                May: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                June: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                July: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                August: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                September: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                October: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                November: { income: 0.0, expenses: 0.0, savings: 0.0 },
+                December: { income: 0.0, expenses: 0.0, savings: 0.0 },
+            };
+
+            const updateSummary = () => {
+                let totalIncome = 0;
+                let totalExpenses = 0;
+                let totalSavings = 0;
+
+                Object.values(data).forEach(({ income, expenses, savings }) => {
+                    totalIncome += income;
+                    totalExpenses += expenses;
+                    totalSavings += savings;
+                });
+
+                document.getElementById("total-income").textContent = `Total Income: R$ ${totalIncome.toFixed(2)}`;
+                document.getElementById("total-expenses").textContent = `Total Expenses: R$ ${totalExpenses.toFixed(2)}`;
+                document.getElementById("total-savings").textContent = `Total Savings: R$ ${totalSavings.toFixed(2)}`;
+            };
+
+            const yearGrid = document.querySelector(".year-grid");
+
+            Object.entries(data).forEach(([month, { income, expenses, savings }]) => {
+                const card = document.createElement("div");
+                card.className = "month-card";
+                card.innerHTML = `
+                    <h2>${month}</h2>
+                    <div>Income: R$ <span contenteditable="true" class="editable" data-month="${month}" data-key="income">${income.toFixed(2)}</span></div>
+                    <div>Expenses: R$ <span contenteditable="true" class="editable" data-month="${month}" data-key="expenses">${expenses.toFixed(2)}</span></div>
+                    <div>Savings: R$ <span contenteditable="true" class="editable" data-month="${month}" data-key="savings">${savings.toFixed(2)}</span></div>
+                `;
+                yearGrid.appendChild(card);
+            });
+
+            yearGrid.addEventListener("input", (e) => {
+                if (e.target.classList.contains("editable")) {
+                    const { month, key } = e.target.dataset;
+                    const value = parseFloat(e.target.textContent.replace(',', '.')) || 0;
+                    data[month][key] = value;
+                    updateSummary();
+                }
+            });
+
+            updateSummary();
+        });
+    </script>
 </head>
 <body>
     <div class="menu">
@@ -95,85 +154,12 @@
             <h1>Year 2025</h1>
         </div>
 
-        <div class="year-grid">
-            <div class="month-card">
-                <h2>January</h2>
-                <div>Income: R$ 2261.98</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>February</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>March</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>April</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>May</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>June</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>July</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>August</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>September</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>October</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>November</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-            <div class="month-card">
-                <h2>December</h2>
-                <div>Income: R$ 00,00</div>
-                <div>Expenses: R$ 00,00</div>
-                <div>Savings: R$ 00,00</div>
-            </div>
-        </div>
+        <div class="year-grid"></div>
 
         <div class="summary">
-            <div>Total Income: R$ 00,00</div>
-            <div>Total Expenses: R$ 00,00</div>
-            <div>Total Savings: R$ 00,00</div>
+            <div id="total-income">Total Income: R$ 00,00</div>
+            <div id="total-expenses">Total Expenses: R$ 00,00</div>
+            <div id="total-savings">Total Savings: R$ 00,00</div>
         </div>
     </div>
 </body>
