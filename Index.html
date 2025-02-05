@@ -4,78 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Financeiro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #102026;
-            color: #c7d2d9;
+        body{
+            margin:0;
+            font-family: "Kumbh Sans", serif;
+            background-color: #051F20;
+            color:#8BB398;
+            font-size: 1.2rem;
         }
-
-        .menu {
-            width: 200px;
-            background-color: #1a2e35;
-            height: 100vh;
-            position: fixed;
-            padding: 20px;
+        .menu{
+            background-color:#011617 ;
+            color:#8BB398;
+            position:fixed;
+            padding: 18px;
+            height:100%;
         }
-
-        .menu a {
+        .menu a{
             display: block;
+            color: #DBF0DD;
             text-decoration: none;
-            color: #c7d2d9;
-            margin: 10px 0;
-            font-size: 18px;
         }
-
-        .menu a:hover {
-            color: #00b894;
+        .menu a:hover{
+            color: #8BB398;
         }
-
-        .content {
-            margin-left: 220px;
-            padding: 20px;
+        .content{
+            margin-left: 150px;
         }
-
-        .header {
+        .header{
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            justify-content: space-evenly;
         }
-
-        .header h1 {
-            font-size: 24px;
+        .header button{
+            color: #DBF0DD;
+            font-size: large;
+            background-color: #011617;
+            border-color: #DBF0DD;
+            border-radius: 50%;
         }
-
+        .header button:hover{
+            color: #8BB398;
+            border-color: #8BB398;
+        }
         .summary {
             display: flex;
             justify-content: space-around;
             margin-bottom: 20px;
         }
-
-        .summary div {
-            background-color: #1a2e35;
-            padding: 20px;
-            border-radius: 10px;
-            width: 30%;
-            text-align: center;
-            font-size: 18px;
+        .summary div{
+            font-size: 1.2rem;
+            background-color:#011617;
+            padding: 1rem 2rem;
+            border-color: #8BB398;
+            border-radius: 12%;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid #2a3b40;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #1a2e35;
+       .form {
+            background-color: #051F20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .form {
@@ -89,25 +80,47 @@
             border: 1px solid #2a3b40;
             border-radius: 5px;
             background-color: #1a2e35;
-            color: #c7d2d9;
+            color: #8BB398;
         }
 
         .form button {
-            background-color: #00b894;
+            color: #011617;
+            background-color: #8BB398;
             border: none;
             cursor: pointer;
         }
 
         .form button:hover {
-            background-color: #019a78;
+            background-color: #235347;
         }
+        table {
+            margin-inline-start: 5% ;
+            width: 100%;
+            border-collapse: collapse;
+            
+           
+            
+        }
+
+        th, td {
+            border:none;
+            padding: 10px;
+            text-align: left;
+            gap: 10rem;
+        }
+
+        th {
+            background-color: #051F20;
+        }
+    
+       
     </style>
 </head>
 <body>
     <div class="menu">
         <h2>Menu</h2>
         <a href="#">Home</a>
-        <a href="#">Year</a>
+        <a href="/ByYear.html">Year</a>
         <a href="#">Investments</a>
         <a href="#">Monthly</a>
         <a href="#">Dashboard</a>
@@ -115,15 +128,17 @@
 
     <div class="content">
         <div class="header">
-            <button>&lt; Back</button>
+            <button>&lt;</button>
             <h1>2025 January</h1>
-            <button>Next &gt;</button>
+            <button>&gt;</button>
         </div>
 
         <div class="summary">
-            <div id="income">Income<br>R$: 0,00</div>
-            <div id="expenses">Expenses<br>R$: 0,00</div>
-            <div id="closing">Closing<br>R$: 0,00</div>
+            <div id="income"><h3>Income<br>R$: 0,00</h3></div>
+            <div id="expenses"><h3>Expenses<br>R$: 0,00</h3></div>
+            <div id="closing"><h3>closing<br>R$: 0,00</h3></div>
+            <div id="closing"><h3>closing<br>R$: 0,00</h3></div>
+            <div id="closing"><h3>closing<br>R$: 0,00</h3></div>
         </div>
 
         <form class="form" id="form">
@@ -163,59 +178,86 @@
             </tbody>
         </table>
     </div>
+<script>
+    function updateSummary() {
+    const rows = document.querySelectorAll('#table-body tr');
+    let totalIncome = 0;
+    let totalExpenses = 0;
 
-    <script>
-        function updateSummary() {
-            const rows = document.querySelectorAll('#table-body tr');
-            let totalIncome = 0;
-            let totalExpenses = 0;
+    rows.forEach(row => {
+        const value = parseFloat(row.children[2].textContent);
+        const type = row.children[4].textContent.toLowerCase();
 
-            rows.forEach(row => {
-                const value = parseFloat(row.children[2].textContent);
-                const type = row.children[4].textContent.toLowerCase();
-
-                if (type === 'income') {
-                    totalIncome += value;
-                } else if (type === 'expenses') {
-                    totalExpenses += value;
-                }
-            });
-
-            document.getElementById('income').innerHTML = `Income<br>R$: ${totalIncome.toFixed(2)}`;
-            document.getElementById('expenses').innerHTML = `Expenses<br>R$: ${totalExpenses.toFixed(2)}`;
-            document.getElementById('closing').innerHTML = `Closing<br>R$: ${(totalIncome - totalExpenses).toFixed(2)}`;
+        if (type === 'income') {
+            totalIncome += value;
+        } else if (type === 'expenses') {
+            totalExpenses += value;
         }
+    });
 
-        document.getElementById('form').addEventListener('submit', function (event) {
-            event.preventDefault();
+    document.getElementById('income').innerHTML = `Income<br>R$: ${totalIncome.toFixed(2)}`;
+    document.getElementById('expenses').innerHTML = `Expenses<br>R$: ${totalExpenses.toFixed(2)}`;
+    document.getElementById('closing').innerHTML = `Closing<br>R$: ${(totalIncome - totalExpenses).toFixed(2)}`;
+}
 
-            const date = document.getElementById('date').value;
-            const description = document.getElementById('description').value;
-            const value = parseFloat(document.getElementById('value').value).toFixed(2);
-            const where = document.getElementById('where').value;
-            const type = document.getElementById('type').value;
+document.getElementById('form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-            const tableBody = document.getElementById('table-body');
+    const date = document.getElementById('date').value;
+    const description = document.getElementById('description').value;
+    const value = parseFloat(document.getElementById('value').value).toFixed(2);
+    const where = document.getElementById('where').value;
+    const type = document.getElementById('type').value;
 
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${date}</td>
-                <td>${description}</td>
-                <td>${value}</td>
-                <td>${where}</td>
-                <td>${type}</td>
-            `;
+    const tableBody = document.getElementById('table-body');
 
-            tableBody.appendChild(newRow);
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>${date}</td>
+        <td>${description}</td>
+        <td>${value}</td>
+        <td>${where}</td>
+        <td>${type}</td>
+    `;
 
-            updateSummary();
+    tableBody.appendChild(newRow);
 
-            // Clear form
-            document.getElementById('form').reset();
-        });
+    updateSummary();
 
-        // Initial summary update
-        updateSummary();
-    </script>
+    // Clear form
+    document.getElementById('form').reset();
+});
+
+// Initial summary update
+updateSummary();
+
+fetch('http://localhost:3000/transacoes')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Exibe os dados no console
+    })
+    .catch(error => console.error('Erro ao buscar transações:', error));
+
+
+    const novaTransacao = {
+        data: '2025-02-04',
+        descricao: 'Salário',
+        valor: 3000.00,
+        categoria: 'Trabalho',
+        tipo: 'income'
+    };
+    
+    fetch('http://localhost:3000/transacoes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(novaTransacao)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Erro ao adicionar transação:', error));
+    
+</script>
 </body>
 </html>
