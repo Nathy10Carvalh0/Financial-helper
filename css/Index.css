@@ -1,0 +1,250 @@
+body{
+    margin:0;
+    font-family: "Kumbh Sans", serif;
+    background-color: #051F20;
+    color:#8BB398;
+    font-size: 1.2rem;
+}
+.menu{
+    background-color:#011617 ;
+    color:#8BB398;
+    position:fixed;
+    padding: 18px;
+    height:100%;
+}
+.menu a{
+    display: block;
+    color: #DBF0DD;
+    text-decoration: none;
+}
+.menu a:hover{
+    color: #8BB398;
+}
+.content{
+    margin-left: 150px;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.header button{
+    color: #DBF0DD;
+    font-size: large;
+    background-color: #011617;
+    border-color: #DBF0DD;
+    border-radius: 50%;
+}
+.header button:hover{
+    color: #8BB398;
+    border-color: #8BB398;
+}
+.summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.summary div{
+    font-size: 1.2rem;
+    background-color:#011617;
+    padding: 1rem 2rem;
+    border-color: #8BB398;
+    border-radius: 12%;
+}
+#newData {
+    background-color: #051F20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#newData {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#newData input, #newData button {
+    padding: 10px;
+    border: 1px solid #2a3b40;
+    border-radius: 5px;
+    background-color: #1a2e35;
+    color: #8BB398;
+}
+#newData input, #newData select {
+    padding: 10px;
+    border: 1px solid #2a3b40;
+    border-radius: 5px;
+    background-color: #1a2e35;
+    color: #8BB398;
+}
+
+#newData button {
+    
+    color: #011617;
+    background-color: #8BB398;
+    border: none;
+    cursor: pointer;
+}
+
+#newData button:hover {
+    background-color: #235347;
+}
+div.table{
+width: 100%;
+display: flex;
+justify-content: center;
+}
+table{
+    width: 98%;
+    padding: 20px 0;
+    border-radius: 5px;
+}
+th{
+    text-align: start;
+    border-bottom: inset #235347;
+    padding-bottom: 5px;
+}
+i{
+    font-size: 25px;
+}
+.bxs-chevron-up-circle{
+    color:#DBF0DD;
+}
+.bxs-chevron-down-circle{
+    color:#d87a7a;
+}
+.columnAction{
+    width: 5%;
+    text-align: center;
+}
+.columnAction>button{
+    background: transparent;
+    border: none;
+}
+.columnDate{
+    width: 10%;
+}
+.columnDescri{
+    width: 35%;
+}
+.columnValue{
+    width: 20%;
+}
+.columnType{
+    width: 5%;
+}
+
+/* div.table {
+    margin-inline-start: 5% ;
+    width: 100%;
+    border-collapse: collapse;   
+}
+div.table th{
+    border:none;
+    padding: 10px;
+    text-align: left;
+    gap: 10rem;
+}
+div.table th {
+    background-color: #051F20;
+}*/
+       /* body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #102026;
+            color: #c7d2d9;
+        }
+
+        .menu {
+            width: 200px;
+            background-color: #1a2e35;
+            height: 100vh;
+            position: fixed;
+            padding: 20px;
+        }
+
+        .menu a {
+            display: block;
+            text-decoration: none;
+            color: #c7d2d9;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .menu a:hover {
+            color: #00b894;
+        }
+
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+        }
+
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .summary div {
+            background-color: #1a2e35;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #2a3b40;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #1a2e35;
+        }
+
+        .form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form input, .form button {
+            padding: 10px;
+            border: 1px solid #2a3b40;
+            border-radius: 5px;
+            background-color: #1a2e35;
+            color: #c7d2d9;
+        }
+
+        .form button {
+            background-color: #00b894;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #019a78;
+        }*/
+    
