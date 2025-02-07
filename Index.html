@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,115 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        body{
-            margin:0;
-            font-family: "Kumbh Sans", serif;
-            background-color: #051F20;
-            color:#8BB398;
-            font-size: 1.2rem;
-        }
-        .menu{
-            background-color:#011617 ;
-            color:#8BB398;
-            position:fixed;
-            padding: 18px;
-            height:100%;
-        }
-        .menu a{
-            display: block;
-            color: #DBF0DD;
-            text-decoration: none;
-        }
-        .menu a:hover{
-            color: #8BB398;
-        }
-        .content{
-            margin-left: 150px;
-        }
-        .header{
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-        .header button{
-            color: #DBF0DD;
-            font-size: large;
-            background-color: #011617;
-            border-color: #DBF0DD;
-            border-radius: 50%;
-        }
-        .header button:hover{
-            color: #8BB398;
-            border-color: #8BB398;
-        }
-        .summary {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-        }
-        .summary div{
-            font-size: 1.2rem;
-            background-color:#011617;
-            padding: 1rem 2rem;
-            border-color: #8BB398;
-            border-radius: 12%;
-        }
-       .form {
-            background-color: #051F20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/Index.css">
 
-        .form {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .form input, .form button {
-            padding: 10px;
-            border: 1px solid #2a3b40;
-            border-radius: 5px;
-            background-color: #1a2e35;
-            color: #8BB398;
-        }
-
-        .form button {
-            color: #011617;
-            background-color: #8BB398;
-            border: none;
-            cursor: pointer;
-        }
-
-        .form button:hover {
-            background-color: #235347;
-        }
-        table {
-            margin-inline-start: 5% ;
-            width: 100%;
-            border-collapse: collapse;
-            
-           
-            
-        }
-
-        th, td {
-            border:none;
-            padding: 10px;
-            text-align: left;
-            gap: 10rem;
-        }
-
-        th {
-            background-color: #051F20;
-        }
-    
-       
-    </style>
 </head>
+
 <body>
     <div class="menu">
         <h2>Menu</h2>
@@ -134,130 +31,58 @@
         </div>
 
         <div class="summary">
-            <div id="income"><h3>Income<br>R$: 0,00</h3></div>
-            <div id="expenses"><h3>Expenses<br>R$: 0,00</h3></div>
-            <div id="closing"><h3>closing<br>R$: 0,00</h3></div>
-            <div id="closing"><h3>closing<br>R$: 0,00</h3></div>
-            <div id="closing"><h3>closing<br>R$: 0,00</h3></div>
+            <div id="income">
+                <h3>Income<br>R$: 0,00</h3>
+            </div>
+            <div id="expenses">
+                <h3>Expenses<br>R$: 0,00</h3>
+            </div>
+            <div id="closing">
+                <h3>closing<br>R$: 0,00</h3>
+            </div>
         </div>
 
-        <form class="form" id="form">
-            <input type="date" id="date" required>
-            <input type="text" id="description" placeholder="Description" required>
-            <input type="number" id="value" placeholder="Value" required>
-            <input type="text" id="where" placeholder="Where" required>
-            <input type="text" id="type" placeholder="Type" required>
-            <button type="submit">Include</button>
-        </form>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                    <th>Value</th>
-                    <th>Where</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-                <tr>
-                    <td>27/01</td>
-                    <td>Salary</td>
-                    <td>1815.00</td>
-                    <td>C6 Debit</td>
-                    <td>Income</td>
-                </tr>
-                <tr>
-                    <td>27/01</td>
-                    <td>Commission</td>
-                    <td>446.98</td>
-                    <td>C6 Debit</td>
-                    <td>Income</td>
-                </tr>
-            </tbody>
-        </table>
+        <div id="newData">
+            <div class="date">
+                <label for="date">Date</label>
+                <input type="date" id="date">
+            </div>
+            <div class="description">
+                <label for="Description">Description</label>
+                <input type="text" id="description">
+            </div>
+            <div class="Value">
+                <label for="Value">Value</label>
+                <input type="number" id="value">
+            </div>
+            <div>
+                <label for="">Type</label>
+            <select name="type" id="type">
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+            </div>
+            <button id="btnInclude" type="submit">Include</button>
+            </form>
+        </div>
+
+        <div class="table">
+            <table>
+                <thead>
+                    <th class="columnDate">Date</th>
+                    <th class="columnDescri">Description</th>
+                    <th class="columnValue">Value</th>
+                    <th class="columnType">Type</th>
+                    <th class="columnAction"></th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-<script>
-    function updateSummary() {
-    const rows = document.querySelectorAll('#table-body tr');
-    let totalIncome = 0;
-    let totalExpenses = 0;
-
-    rows.forEach(row => {
-        const value = parseFloat(row.children[2].textContent);
-        const type = row.children[4].textContent.toLowerCase();
-
-        if (type === 'income') {
-            totalIncome += value;
-        } else if (type === 'expenses') {
-            totalExpenses += value;
-        }
-    });
-
-    document.getElementById('income').innerHTML = `Income<br>R$: ${totalIncome.toFixed(2)}`;
-    document.getElementById('expenses').innerHTML = `Expenses<br>R$: ${totalExpenses.toFixed(2)}`;
-    document.getElementById('closing').innerHTML = `Closing<br>R$: ${(totalIncome - totalExpenses).toFixed(2)}`;
-}
-
-document.getElementById('form').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const date = document.getElementById('date').value;
-    const description = document.getElementById('description').value;
-    const value = parseFloat(document.getElementById('value').value).toFixed(2);
-    const where = document.getElementById('where').value;
-    const type = document.getElementById('type').value;
-
-    const tableBody = document.getElementById('table-body');
-
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-        <td>${date}</td>
-        <td>${description}</td>
-        <td>${value}</td>
-        <td>${where}</td>
-        <td>${type}</td>
-    `;
-
-    tableBody.appendChild(newRow);
-
-    updateSummary();
-
-    // Clear form
-    document.getElementById('form').reset();
-});
-
-// Initial summary update
-updateSummary();
-
-fetch('http://localhost:3000/transacoes')
-    .then(response => response.json())
-    .then(data => {
-        console.log(data); // Exibe os dados no console
-    })
-    .catch(error => console.error('Erro ao buscar transações:', error));
-
-
-    const novaTransacao = {
-        data: '2025-02-04',
-        descricao: 'Salário',
-        valor: 3000.00,
-        categoria: 'Trabalho',
-        tipo: 'income'
-    };
     
-    fetch('http://localhost:3000/transacoes', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(novaTransacao)
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Erro ao adicionar transação:', error));
-    
-</script>
 </body>
+<script src="script.js"></script>
 </html>

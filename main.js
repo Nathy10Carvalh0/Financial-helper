@@ -32,12 +32,12 @@ document.getElementById('form').addEventListener('submit', function (event) {
 
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
-        <td>${date}</td>
-        <td>${description}</td>
-        <td>${value}</td>
-        <td>${where}</td>
-        <td>${type}</td>
-    `;
+<td>${date}</td>
+<td>${description}</td>
+<td>${value}</td>
+<td>${where}</td>
+<td>${type}</td>
+`;
 
     tableBody.appendChild(newRow);
 
@@ -58,22 +58,21 @@ fetch('http://localhost:3000/transacoes')
     .catch(error => console.error('Erro ao buscar transações:', error));
 
 
-    const novaTransacao = {
-        data: '2025-02-04',
-        descricao: 'Salário',
-        valor: 3000.00,
-        categoria: 'Trabalho',
-        tipo: 'income'
-    };
-    
-    fetch('http://localhost:3000/transacoes', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(novaTransacao)
-    })
+const novaTransacao = {
+    data: '2025-02-04',
+    descricao: 'Salário',
+    valor: 3000.00,
+    categoria: 'Trabalho',
+    tipo: 'income'
+};
+
+fetch('http://localhost:3000/transacoes', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(novaTransacao)
+})
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Erro ao adicionar transação:', error));
-    
